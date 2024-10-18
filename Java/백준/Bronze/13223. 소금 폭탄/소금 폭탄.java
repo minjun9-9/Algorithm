@@ -5,30 +5,63 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		String current = sc.nextLine();
+		
+		String start = sc.nextLine();
 		String drop = sc.nextLine();
 		
-		String[] currentUnit = current.split(":");
-		int currentHour = Integer.parseInt(currentUnit[0]);
-		int currentMinute = Integer.parseInt(currentUnit[1]);
-		int currentSecound = Integer.parseInt(currentUnit[2]);
-		int currentSecondAmount = currentHour*3600+currentMinute*60+currentSecound;
-		String[] dropUnit = drop.split(":");
-		int dropHour = Integer.parseInt(dropUnit[0]);
-		int dropMinute = Integer.parseInt(dropUnit[1]);
-		int dropSecound = Integer.parseInt(dropUnit[2]);
-		int dropSecondAmount = dropHour*3600+dropMinute*60+dropSecound;
-		
-		int needSecondAmount = dropSecondAmount - currentSecondAmount;
-		if(needSecondAmount <= 0) {
-			needSecondAmount += 24*3600;
+		int startHour = ((start.charAt(0)-'0')*10)+(start.charAt(1)-'0');
+		int startMinute = ((start.charAt(3)-'0')*10)+(start.charAt(4)-'0');
+		int startSecond = ((start.charAt(6)-'0')*10)+(start.charAt(7)-'0');
+
+		int dropHour = ((drop.charAt(0)-'0')*10)+(drop.charAt(1)-'0');
+		int dropMinute = ((drop.charAt(3)-'0')*10)+(drop.charAt(4)-'0');
+		int dropSecond = ((drop.charAt(6)-'0')*10)+(drop.charAt(7)-'0');
+		int hour = dropHour - startHour;
+		int minute = dropMinute - startMinute;
+		int second = dropSecond - startSecond;
+		if(second < 0) {
+			second+=60;
+			minute--;
+		}
+		if(minute < 0) {
+			minute+=60;
+			hour--;
+		}
+		if(hour < 0) {
+			hour+=24;
+		}
+		if (start.equals(drop)) {
+			System.out.println("24:00:00");
+		} else {
+			System.out.printf("%02d:%02d:%02d",hour,minute,second);
 		}
 		
-		int needHour = needSecondAmount / 3600;
-		int needMinute = needSecondAmount % 3600 / 60;
-		int needSecond = needSecondAmount % 60;
 		
-		System.out.printf("%02d:%02d:%02d",needHour,needMinute,needSecond);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
